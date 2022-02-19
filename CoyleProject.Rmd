@@ -1,0 +1,16 @@
+---
+title: "Measuring Student Success in MA050 & Beyond"
+authors: Shannon Coyle & Rachel Kempter
+output: html_notebook
+---
+
+```{r}
+math.students = Math_Courses_Taken_by_MATH_1_Placements
+```
+
+```{r}
+for(i in length(math.students)) {
+  
+}
+```
+
