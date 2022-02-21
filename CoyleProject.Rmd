@@ -5,12 +5,22 @@ output: html_notebook
 ---
 
 ```{r}
+library(mosaic)
+```
+
+```{r}
 math.students = Math_Courses_Taken_by_MATH_1_Placements
 ```
 
 ```{r}
-for(i in length(math.students)) {
-  
-}
+math.students = math.students %>% 
+  rename(
+    id = 'ID', 
+    term = 'Term',
+   course.name = 'Course Name',
+   section.name = 'Section Name',
+   current.status = 'Current Status'
+   
+  )
 ```
 
