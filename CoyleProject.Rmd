@@ -8,19 +8,40 @@ output: html_notebook
 library(mosaic)
 ```
 
+
 ```{r}
-math.students = Math_Courses_Taken_by_MATH_1_Placements
+# Initializing the dataset to a variable
+math.students = CoyleSans22
 ```
 
 ```{r}
+# Manipulating the names of the columns so they are easier to call in the future
 math.students = math.students %>% 
   rename(
     id = 'ID', 
     term = 'Term',
-   course.name = 'Course Name',
-   section.name = 'Section Name',
-   current.status = 'Current Status'
-   
+    course.name = 'Course Name',
+    section.name = 'Section Name',
+    current.status = 'Current Status',
+    verif.grade = 'Verif Grade',
+    actual.grade = 'Actual Grade'
+    
   )
+```
+
+```{r}
+data.list <- split(math.students, f = math.students$id)
+```
+
+```{r}
+nrow(data.list[[1]])
+```
+
+```{r}
+for(i in length(data.list)) {
+  if(nrow(data.list[[i]]) > 2) {
+    print("greater than")
+  }
+}
 ```
 
