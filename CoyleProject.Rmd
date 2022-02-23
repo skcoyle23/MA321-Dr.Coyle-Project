@@ -31,15 +31,33 @@ math.students = math.students %>%
 
 ```{r}
 # Creating a split list of math students based on their ids and grouping them together
-data.list <- split(math.students, f = math.students$id)
+split.by.id <- split(math.students, f = math.students$id)
 ```
 
 ```{r}
-# 
-for(i in 1:length(data.list)) {
-  if(nrow(data.list[[i]]) >= 2) {
-    more.than.two.grades <- c(more.than.two.grades, data.list[i])
+# Creating a split list of courses
+split.by.ma050 <- split(math.students, f = math.students$course.name)
+```
+
+```{r}
+# Creating a split list based on student current status
+split.by.current.status <- split(math.students, f = math.students$current.status)
+```
+
+```{r}
+# Creating a split list based on grade received in course
+split.by.verif.grade <- split(math.students, f = math.students$verif.grade)
+```
+
+```{r}
+# Initializing a dataframe to be populated with ids that occur twice or more
+more.than.two.grades <- c()
+
+for(i in 1:length(split.by.id)) {
+  if(nrow(split.by.id[[i]]) >= 2) {
+    more.than.two.grades <- c(more.than.two.grades, split.by.id[i])
   }
 }
 ```
+
 
