@@ -29,6 +29,7 @@ math.students = math.students %>%
   )
 ```
 
+## Splitting the data based on column names to see frequency of each
 ```{r}
 # Creating a split list of math students based on their ids and grouping them together
 split.by.id <- split(math.students, f = math.students$id)
@@ -37,6 +38,11 @@ split.by.id <- split(math.students, f = math.students$id)
 ```{r}
 # Creating a split list of courses
 split.by.ma050 <- split(math.students, f = math.students$course.name)
+```
+
+```{r}
+# Creating a split list based on term taken
+split.by.term <- split(math.students, f = math.students$term)
 ```
 
 ```{r}
@@ -49,6 +55,7 @@ split.by.current.status <- split(math.students, f = math.students$current.status
 split.by.verif.grade <- split(math.students, f = math.students$verif.grade)
 ```
 
+## Further condensing each of the dataframes
 ```{r}
 # Initializing a dataframe to be populated with ids that occur twice or more
 more.than.two.grades <- c()
@@ -60,4 +67,25 @@ for(i in 1:length(split.by.id)) {
 }
 ```
 
+```{r}
+# Adding COVID semesters into its own dataframe to see if there is a difference in grades
+covid.terms <- c()
+
+for(i in 1:length(split.by.term)) {
+  if(split.by.term[[i]]$term == "20/SP" || split.by.term[[i]]$term == "20/SA" || split.by.term[[i]]$term == "20/SB" ||  split.by.term[[i]]$term == "20/SC" || split.by.term[[i]]$term == "20/SD" || split.by.term[[i]]$term == "20/SE" || split.by.term[[i]]$term == "20/FA" || split.by.term[[i]]$term == "21/SP" || split.by.term[[i]]$term == "21/SA" || split.by.term[[i]]$term == "21/SB" ||  split.by.term[[i]]$term == "21/SC" || split.by.term[[i]]$term == "21/SD" || split.by.term[[i]]$term == "21/SE") {
+    covid.terms <- c(covid.terms, split.by.term[i])
+  }
+}
+```
+
+```{r}
+fa.20.ma050 <- c()
+
+for(i in 1:length(covid.terms$`20/FA`)) {
+  if(covid.terms$`20/FA`[i, 3] == "MA-050") {
+    fa.20.ma050 <- c(fa.20.ma050, covid.terms$`20/FA`[i, 3])
+  }
+}
+
+```
 
