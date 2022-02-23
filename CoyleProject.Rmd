@@ -30,17 +30,15 @@ math.students = math.students %>%
 ```
 
 ```{r}
+# Creating a split list of math students based on their ids and grouping them together
 data.list <- split(math.students, f = math.students$id)
 ```
 
 ```{r}
-nrow(data.list[[1]])
-```
-
-```{r}
-for(i in length(data.list)) {
-  if(nrow(data.list[[i]]) > 2) {
-    print("greater than")
+# 
+for(i in 1:length(data.list)) {
+  if(nrow(data.list[[i]]) >= 2) {
+    more.than.two.grades <- c(more.than.two.grades, data.list[i])
   }
 }
 ```

@@ -2454,21 +2454,10 @@ $`2873848`</code></pre>
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubnJvdyhkYXRhLmxpc3RbWzFdXSlcblxuYGBgIn0= -->
-<pre class="r"><code>nrow(data.list[[1]])
-</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDNcbiJ9 -->
-<pre><code>[1] 3</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZm9yKGkgaW4gbGVuZ3RoKGRhdGEubGlzdCkpIHtcbiAgaWYobnJvdyhkYXRhLmxpc3RbW2ldXSkgPiAyKSB7XG4gICAgcHJpbnQoXCJncmVhdGVyIHRoYW5cIilcbiAgfVxufVxuYGBgIn0= -->
-<pre class="r"><code>for(i in length(data.list)) {
-  if(nrow(data.list[[i]]) &gt; 2) {
-    print(&quot;greater than&quot;)
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZm9yKGkgaW4gMTpsZW5ndGgoZGF0YS5saXN0KSkge1xuICBpZihucm93KGRhdGEubGlzdFtbaV1dKSA+PSAyKSB7XG4gICAgbW9yZS50aGFuLnR3by5ncmFkZXMgPC0gYyhtb3JlLnRoYW4udHdvLmdyYWRlcywgZGF0YS5saXN0W2ldKVxuICB9XG59XG5gYGAifQ== -->
+<pre class="r"><code>for(i in 1:length(data.list)) {
+  if(nrow(data.list[[i]]) &gt;= 2) {
+    more.than.two.grades &lt;- c(more.than.two.grades, data.list[i])
   }
 }</code></pre>
 <!-- rnb-source-end -->
@@ -2476,7 +2465,7 @@ $`2873848`</code></pre>
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 
-<div id="rmd-source-code">LS0tDQp0aXRsZTogIk1lYXN1cmluZyBTdHVkZW50IFN1Y2Nlc3MgaW4gTUEwNTAgJiBCZXlvbmQiDQphdXRob3JzOiBTaGFubm9uIENveWxlICYgUmFjaGVsIEtlbXB0ZXINCm91dHB1dDogaHRtbF9ub3RlYm9vaw0KLS0tDQoNCmBgYHtyfQ0KbGlicmFyeShtb3NhaWMpDQpgYGANCg0KDQpgYGB7cn0NCiMgSW5pdGlhbGl6aW5nIHRoZSBkYXRhc2V0IHRvIGEgdmFyaWFibGUNCm1hdGguc3R1ZGVudHMgPSBDb3lsZVNhbnMyMg0KYGBgDQoNCmBgYHtyfQ0KIyBNYW5pcHVsYXRpbmcgdGhlIG5hbWVzIG9mIHRoZSBjb2x1bW5zIHNvIHRoZXkgYXJlIGVhc2llciB0byBjYWxsIGluIHRoZSBmdXR1cmUNCm1hdGguc3R1ZGVudHMgPSBtYXRoLnN0dWRlbnRzICU+JSANCiAgcmVuYW1lKA0KICAgIGlkID0gJ0lEJywgDQogICAgdGVybSA9ICdUZXJtJywNCiAgICBjb3Vyc2UubmFtZSA9ICdDb3Vyc2UgTmFtZScsDQogICAgc2VjdGlvbi5uYW1lID0gJ1NlY3Rpb24gTmFtZScsDQogICAgY3VycmVudC5zdGF0dXMgPSAnQ3VycmVudCBTdGF0dXMnLA0KICAgIHZlcmlmLmdyYWRlID0gJ1ZlcmlmIEdyYWRlJywNCiAgICBhY3R1YWwuZ3JhZGUgPSAnQWN0dWFsIEdyYWRlJw0KICAgIA0KICApDQpgYGANCg0KYGBge3J9DQpkYXRhLmxpc3QgPC0gc3BsaXQobWF0aC5zdHVkZW50cywgZiA9IG1hdGguc3R1ZGVudHMkaWQpDQpgYGANCg0KYGBge3J9DQpucm93KGRhdGEubGlzdFtbMV1dKQ0KYGBgDQoNCmBgYHtyfQ0KZm9yKGkgaW4gbGVuZ3RoKGRhdGEubGlzdCkpIHsNCiAgaWYobnJvdyhkYXRhLmxpc3RbW2ldXSkgPiAyKSB7DQogICAgcHJpbnQoImdyZWF0ZXIgdGhhbiIpDQogIH0NCn0NCmBgYA0KDQo=</div>
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIk1lYXN1cmluZyBTdHVkZW50IFN1Y2Nlc3MgaW4gTUEwNTAgJiBCZXlvbmQiDQphdXRob3JzOiBTaGFubm9uIENveWxlICYgUmFjaGVsIEtlbXB0ZXINCm91dHB1dDogaHRtbF9ub3RlYm9vaw0KLS0tDQoNCmBgYHtyfQ0KbGlicmFyeShtb3NhaWMpDQpgYGANCg0KDQpgYGB7cn0NCiMgSW5pdGlhbGl6aW5nIHRoZSBkYXRhc2V0IHRvIGEgdmFyaWFibGUNCm1hdGguc3R1ZGVudHMgPSBDb3lsZVNhbnMyMg0KYGBgDQoNCmBgYHtyfQ0KIyBNYW5pcHVsYXRpbmcgdGhlIG5hbWVzIG9mIHRoZSBjb2x1bW5zIHNvIHRoZXkgYXJlIGVhc2llciB0byBjYWxsIGluIHRoZSBmdXR1cmUNCm1hdGguc3R1ZGVudHMgPSBtYXRoLnN0dWRlbnRzICU+JSANCiAgcmVuYW1lKA0KICAgIGlkID0gJ0lEJywgDQogICAgdGVybSA9ICdUZXJtJywNCiAgICBjb3Vyc2UubmFtZSA9ICdDb3Vyc2UgTmFtZScsDQogICAgc2VjdGlvbi5uYW1lID0gJ1NlY3Rpb24gTmFtZScsDQogICAgY3VycmVudC5zdGF0dXMgPSAnQ3VycmVudCBTdGF0dXMnLA0KICAgIHZlcmlmLmdyYWRlID0gJ1ZlcmlmIEdyYWRlJywNCiAgICBhY3R1YWwuZ3JhZGUgPSAnQWN0dWFsIEdyYWRlJw0KICAgIA0KICApDQpgYGANCg0KYGBge3J9DQojIENyZWF0aW5nIGEgc3BsaXQgbGlzdCBvZiBtYXRoIHN0dWRlbnRzIGJhc2VkIG9uIHRoZWlyIGlkcyBhbmQgZ3JvdXBpbmcgdGhlbSB0b2dldGhlcg0KZGF0YS5saXN0IDwtIHNwbGl0KG1hdGguc3R1ZGVudHMsIGYgPSBtYXRoLnN0dWRlbnRzJGlkKQ0KYGBgDQoNCmBgYHtyfQ0KIyANCmZvcihpIGluIDE6bGVuZ3RoKGRhdGEubGlzdCkpIHsNCiAgaWYobnJvdyhkYXRhLmxpc3RbW2ldXSkgPj0gMikgew0KICAgIG1vcmUudGhhbi50d28uZ3JhZGVzIDwtIGMobW9yZS50aGFuLnR3by5ncmFkZXMsIGRhdGEubGlzdFtpXSkNCiAgfQ0KfQ0KYGBgDQoNCg==</div>
 
 
 
