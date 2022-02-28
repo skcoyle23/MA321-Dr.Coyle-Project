@@ -6,12 +6,18 @@ output: html_notebook
 
 ```{r}
 library(mosaic)
+library(dplyr)
 ```
 
+```{r}
+# Initializing the dataset to a variable - dataset without spring/22 and without majors, professor, etc
+math.students.without.SP22 = CoyleSans22
+```
 
 ```{r}
-# Initializing the dataset to a variable
-math.students = CoyleSans22
+# Initializing the dataset to a variable - dataset is updated but has spring/22 in it
+math.students = Math_Data2
+math.students <- as.data.frame(math.students)
 ```
 
 ```{r}
@@ -20,12 +26,16 @@ math.students = math.students %>%
   rename(
     id = 'ID', 
     term = 'Term',
+    actual.major = 'ACT MAJ',
+    active.programs = 'Active Programs',
     course.name = 'Course Name',
     section.name = 'Section Name',
     current.status = 'Current Status',
+    midterm.grade = 'MIDTERM GRADE',
     verif.grade = 'Verif Grade',
-    actual.grade = 'Actual Grade'
-    
+    final.grade = 'Final Grade',
+    completed.credits = 'Cmpl Cred',
+    faculty.last = 'Faculty Last Name'
   )
 ```
 
@@ -55,7 +65,19 @@ split.by.current.status <- split(math.students, f = math.students$current.status
 split.by.verif.grade <- split(math.students, f = math.students$verif.grade)
 ```
 
+
 ## Further condensing each of the dataframes
+```{r}
+# Omitting the Spring 22 students
+terms <- c()
+
+for(i in 1:length(split.by.term)) {
+  if(split.by.term[[i]]$term != "22/SP" && split.by.term != "") {
+    terms <- c(terms, split.by.term[i])
+  }
+}
+```
+
 ```{r}
 # Initializing a dataframe to be populated with ids that occur twice or more
 more.than.two.grades <- c()
@@ -63,6 +85,17 @@ more.than.two.grades <- c()
 for(i in 1:length(split.by.id)) {
   if(nrow(split.by.id[[i]]) >= 2) {
     more.than.two.grades <- c(more.than.two.grades, split.by.id[i])
+  }
+}
+```
+
+```{r}
+# Initializing a dataframe to be populated with ids that occur only twice
+only.two.grades <- c()
+
+for(i in 1:length(split.by.id)) {
+  if(nrow(split.by.id[[i]]) == 2) {
+   only.two.grades <- c(only.two.grades, split.by.id[i])
   }
 }
 ```
@@ -87,5 +120,42 @@ for(i in 1:length(covid.terms$`20/FA`)) {
   }
 }
 
+```
+
+```{r}
+# data frame with grades
+df = reshape2::dcast(math.students, id + actual.major + active.programs ~ rowid(id), value.var = "final.grade")
+colnames(df) = c("ID", "ACT_MAJ", "Active_Programs", "Grade1", "Grade2", "Grade3", "Grade4", "Grade5", "Grade6")
+
+# data frame with terms
+term = reshape2::dcast(math.students, id ~ rowid(id), value.var = "term")
+term = subset(term, select = -c(id))
+colnames(term) = c("Term1", "Term2", "Term3", "Term4", "Term5", "Term6")
+
+# data frame with course codes
+name = reshape2::dcast(math.students, id ~ rowid(id), value.var = "course.name")
+name = subset(name, select = -c(id))
+colnames(name) = c("Course1", "Course2", "Course3", "Course4", "Course5", "Course6")
+
+# data frame with profs
+prof = reshape2::dcast(math.students, id ~ rowid(id), value.var = "faculty.last")
+prof = subset(prof, select = -c(id))
+colnames(prof) = c("Prof1", "Prof2", "Prof3", "Prof4", "Prof5", "Prof6")
+
+# merge all data frames above to one data frame
+all.data.frames = cbind(df, term, name, prof)
+
+# reorder the columns in the merged data frame
+ordered.data.frame <- subset(all.data.frames, select = c("ID", "ACT_MAJ", "Active_Programs", "Prof1", "Term1", "Course1", "Grade1", "Prof2", "Term2", "Course2", "Grade2", "Prof3", "Term3", "Course3", "Grade3", "Prof4", "Term4", "Course4", "Grade4", "Prof5", "Term5", "Course5", "Grade5", "Prof6", "Term6", "Course6", "Grade6"))
+
+```
+
+```{r}
+## Getting rid of people who have taken 050 twice
+for(i in 1:length(ordered.data.frame$Course1)) {
+  if(ordered.data.frame$Course1 == "MA-050" && ordered.data.frame$Course2 == "MA-050") {
+    remove(ordered.data.frame[i])
+  }
+}
 ```
 

@@ -1,0 +1,72 @@
+title: "Measuring Student Success in MA050 & Beyond"
+authors: Shannon Coyle & Rachel Kempter
+output: html_notebook
+---
+### Rachel Messing Around
+```{r}
+library(readxl) # read_excel
+library(mosaic)
+library(reshape2) # dcast
+library(data.table) # rowid
+```
+
+```{r}
+getwd()
+```
+
+```{r}
+math.cleaner = read_excel("MathData2Cleaner3.xlsx")
+```
+
+```{r}
+# data frame with grades
+df = reshape2::dcast(math.cleaner, ID + ACT_MAJ + Active_Programs ~ rowid(ID), value.var = "Actual_Grade")
+colnames(df) = c("ID", "ACT_MAJ", "Active_Programs", "Grade1", "Grade2", "Grade3", "Grade4", "Grade5", "Grade6")
+
+# data frame with terms
+term = reshape2::dcast(math.cleaner, ID ~ rowid(ID), value.var = "Term")
+term = subset(term, select = -c(ID))
+colnames(term) = c("Term1", "Term2", "Term3", "Term4", "Term5", "Term6")
+
+# data frame with course codes
+name = reshape2::dcast(math.cleaner, ID ~ rowid(ID), value.var = "Course_Name")
+name = subset(name, select = -c(ID))
+colnames(name) = c("Course1", "Course2", "Course3", "Course4", "Course5", "Course6")
+
+# data frame with profs
+prof = reshape2::dcast(math.cleaner, ID ~ rowid(ID), value.var = "Faculty_Last_Name")
+prof = subset(prof, select = -c(ID))
+colnames(prof) = c("Prof1", "Prof2", "Prof3", "Prof4", "Prof5", "Prof6")
+
+# merge all data frames above to one data frame
+total = cbind(df, term, name, prof)
+
+# reorder the columns in the merged data frame
+order <- subset(total, select = c("ID", "ACT_MAJ", "Active_Programs", "Prof1", "Term1", "Course1", "Grade1", "Prof2", "Term2", "Course2", "Grade2", "Prof3", "Term3", "Course3", "Grade3", "Prof4", "Term4", "Course4", "Grade4", "Prof5", "Term5", "Course5", "Grade5", "Prof6", "Term6", "Course6", "Grade6"))
+```
+
+```{r}
+##### Don't run the code below!! 
+##### We might need to put numbers for the terms and order them so that everyone is in the right order
+
+# getting rid of NAs in grade1 and grade2 (AKA people who havent completed at least 2 courses)
+df_col1 = order[!is.na(order$Grade1),]
+
+all.people = df_col1[!is.na(df_col1$Grade2),]
+```
+
+```{r}
+# getting rid of students who's first course is NOT MA 050
+all_050 = all.people[all.people$Course1 == "MA-050",]
+
+# use this command once we get the final data frame in order to have the row names be accurate 
+rownames(all_050) <- NULL
+```
+
+```{r}
+## the data is not in the correct order
+
+## now i just have to figure out how to fix the ppl that took MA 050 twice
+
+```
+

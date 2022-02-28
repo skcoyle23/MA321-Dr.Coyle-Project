@@ -217,33 +217,47 @@ pre code {
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShtb3NhaWMpXG5gYGAifQ== -->
-<pre class="r"><code>library(mosaic)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShtb3NhaWMpXG5saWJyYXJ5KGRwbHlyKVxuYGBgIn0= -->
+<pre class="r"><code>library(mosaic)
+library(dplyr)</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBJbml0aWFsaXppbmcgdGhlIGRhdGFzZXQgdG8gYSB2YXJpYWJsZVxubWF0aC5zdHVkZW50cyA9IENveWxlU2FuczIyXG5gYGAifQ== -->
-<pre class="r"><code># Initializing the dataset to a variable
-math.students = CoyleSans22</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBJbml0aWFsaXppbmcgdGhlIGRhdGFzZXQgdG8gYSB2YXJpYWJsZSAtIGRhdGFzZXQgd2l0aG91dCBzcHJpbmcvMjIgYW5kIHdpdGhvdXQgbWFqb3JzLCBwcm9mZXNzb3IsIGV0Y1xubWF0aC5zdHVkZW50cy53aXRob3V0LlNQMjIgPSBDb3lsZVNhbnMyMlxuYGBgIn0= -->
+<pre class="r"><code># Initializing the dataset to a variable - dataset without spring/22 and without majors, professor, etc
+math.students.without.SP22 = CoyleSans22</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBNYW5pcHVsYXRpbmcgdGhlIG5hbWVzIG9mIHRoZSBjb2x1bW5zIHNvIHRoZXkgYXJlIGVhc2llciB0byBjYWxsIGluIHRoZSBmdXR1cmVcbm1hdGguc3R1ZGVudHMgPSBtYXRoLnN0dWRlbnRzICU+JSBcbiAgcmVuYW1lKFxuICAgIGlkID0gJ0lEJywgXG4gICAgdGVybSA9ICdUZXJtJyxcbiAgICBjb3Vyc2UubmFtZSA9ICdDb3Vyc2UgTmFtZScsXG4gICAgc2VjdGlvbi5uYW1lID0gJ1NlY3Rpb24gTmFtZScsXG4gICAgY3VycmVudC5zdGF0dXMgPSAnQ3VycmVudCBTdGF0dXMnLFxuICAgIHZlcmlmLmdyYWRlID0gJ1ZlcmlmIEdyYWRlJyxcbiAgICBhY3R1YWwuZ3JhZGUgPSAnQWN0dWFsIEdyYWRlJ1xuICAgIFxuICApXG5gYGAifQ== -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBJbml0aWFsaXppbmcgdGhlIGRhdGFzZXQgdG8gYSB2YXJpYWJsZSAtIGRhdGFzZXQgaXMgdXBkYXRlZCBidXQgaGFzIHNwcmluZy8yMiBpbiBpdFxubWF0aC5zdHVkZW50cyA9IE1hdGhfRGF0YTJcbm1hdGguc3R1ZGVudHMgPC0gYXMuZGF0YS5mcmFtZShtYXRoLnN0dWRlbnRzKVxuYGBgIn0= -->
+<pre class="r"><code># Initializing the dataset to a variable - dataset is updated but has spring/22 in it
+math.students = Math_Data2
+math.students &lt;- as.data.frame(math.students)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBNYW5pcHVsYXRpbmcgdGhlIG5hbWVzIG9mIHRoZSBjb2x1bW5zIHNvIHRoZXkgYXJlIGVhc2llciB0byBjYWxsIGluIHRoZSBmdXR1cmVcbm1hdGguc3R1ZGVudHMgPSBtYXRoLnN0dWRlbnRzICU+JSBcbiAgcmVuYW1lKFxuICAgIGlkID0gJ0lEJywgXG4gICAgdGVybSA9ICdUZXJtJyxcbiAgICBhY3R1YWwubWFqb3IgPSAnQUNUIE1BSicsXG4gICAgYWN0aXZlLnByb2dyYW1zID0gJ0FjdGl2ZSBQcm9ncmFtcycsXG4gICAgY291cnNlLm5hbWUgPSAnQ291cnNlIE5hbWUnLFxuICAgIHNlY3Rpb24ubmFtZSA9ICdTZWN0aW9uIE5hbWUnLFxuICAgIGN1cnJlbnQuc3RhdHVzID0gJ0N1cnJlbnQgU3RhdHVzJyxcbiAgICBtaWR0ZXJtLmdyYWRlID0gJ01JRFRFUk0gR1JBREUnLFxuICAgIHZlcmlmLmdyYWRlID0gJ1ZlcmlmIEdyYWRlJyxcbiAgICBmaW5hbC5ncmFkZSA9ICdGaW5hbCBHcmFkZScsXG4gICAgY29tcGxldGVkLmNyZWRpdHMgPSAnQ21wbCBDcmVkJyxcbiAgICBmYWN1bHR5Lmxhc3QgPSAnRmFjdWx0eSBMYXN0IE5hbWUnXG4gIClcbmBgYCJ9 -->
 <pre class="r"><code># Manipulating the names of the columns so they are easier to call in the future
 math.students = math.students %&gt;% 
   rename(
     id = &#39;ID&#39;, 
     term = &#39;Term&#39;,
+    actual.major = &#39;ACT MAJ&#39;,
+    active.programs = &#39;Active Programs&#39;,
     course.name = &#39;Course Name&#39;,
     section.name = &#39;Section Name&#39;,
     current.status = &#39;Current Status&#39;,
+    midterm.grade = &#39;MIDTERM GRADE&#39;,
     verif.grade = &#39;Verif Grade&#39;,
-    actual.grade = &#39;Actual Grade&#39;
-    
+    final.grade = &#39;Final Grade&#39;,
+    completed.credits = &#39;Cmpl Cred&#39;,
+    faculty.last = &#39;Faculty Last Name&#39;
   )</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
@@ -276,15 +290,17 @@ split.by.term &lt;- split(math.students, f = math.students$term)</code></pre>
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc3BsaXQuYnkuY3VycmVudC5zdGF0dXMgPC0gc3BsaXQobWF0aC5zdHVkZW50cywgZiA9IG1hdGguc3R1ZGVudHMkY3VycmVudC5zdGF0dXMpXG5gYGAifQ== -->
-<pre class="r"><code>split.by.current.status &lt;- split(math.students, f = math.students$current.status)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBDcmVhdGluZyBhIHNwbGl0IGxpc3QgYmFzZWQgb24gc3R1ZGVudCBjdXJyZW50IHN0YXR1c1xuc3BsaXQuYnkuY3VycmVudC5zdGF0dXMgPC0gc3BsaXQobWF0aC5zdHVkZW50cywgZiA9IG1hdGguc3R1ZGVudHMkY3VycmVudC5zdGF0dXMpXG5gYGAifQ== -->
+<pre class="r"><code># Creating a split list based on student current status
+split.by.current.status &lt;- split(math.students, f = math.students$current.status)</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc3BsaXQuYnkudmVyaWYuZ3JhZGUgPC0gc3BsaXQobWF0aC5zdHVkZW50cywgZiA9IG1hdGguc3R1ZGVudHMkdmVyaWYuZ3JhZGUpXG5gYGAifQ== -->
-<pre class="r"><code>split.by.verif.grade &lt;- split(math.students, f = math.students$verif.grade)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBDcmVhdGluZyBhIHNwbGl0IGxpc3QgYmFzZWQgb24gZ3JhZGUgcmVjZWl2ZWQgaW4gY291cnNlXG5zcGxpdC5ieS52ZXJpZi5ncmFkZSA8LSBzcGxpdChtYXRoLnN0dWRlbnRzLCBmID0gbWF0aC5zdHVkZW50cyR2ZXJpZi5ncmFkZSlcbmBgYCJ9 -->
+<pre class="r"><code># Creating a split list based on grade received in course
+split.by.verif.grade &lt;- split(math.students, f = math.students$verif.grade)</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
@@ -293,13 +309,41 @@ split.by.term &lt;- split(math.students, f = math.students$term)</code></pre>
 <h2>Further condensing each of the dataframes</h2>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBcbm1vcmUudGhhbi50d28uZ3JhZGVzIDwtIGMoKVxuXG5mb3IoaSBpbiAxOmxlbmd0aChzcGxpdC5ieS5pZCkpIHtcbiAgaWYobnJvdyhzcGxpdC5ieS5pZFtbaV1dKSA+PSAyKSB7XG4gICAgbW9yZS50aGFuLnR3by5ncmFkZXMgPC0gYyhtb3JlLnRoYW4udHdvLmdyYWRlcywgc3BsaXQuYnkuaWRbaV0pXG4gIH1cbn1cbmBgYCJ9 -->
-<pre class="r"><code># 
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBPbWl0dGluZyB0aGUgU3ByaW5nIDIyIHN0dWRlbnRzXG50ZXJtcyA8LSBjKClcblxuZm9yKGkgaW4gMTpsZW5ndGgoc3BsaXQuYnkudGVybSkpIHtcbiAgaWYoc3BsaXQuYnkudGVybVtbaV1dJHRlcm0gIT0gXCIyMi9TUFwiICYmIHNwbGl0LmJ5LnRlcm0gIT0gXCJcIikge1xuICAgIHRlcm1zIDwtIGModGVybXMsIHNwbGl0LmJ5LnRlcm1baV0pXG4gIH1cbn1cbmBgYCJ9 -->
+<pre class="r"><code># Omitting the Spring 22 students
+terms &lt;- c()
+
+for(i in 1:length(split.by.term)) {
+  if(split.by.term[[i]]$term != &quot;22/SP&quot; &amp;&amp; split.by.term != &quot;&quot;) {
+    terms &lt;- c(terms, split.by.term[i])
+  }
+}</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBJbml0aWFsaXppbmcgYSBkYXRhZnJhbWUgdG8gYmUgcG9wdWxhdGVkIHdpdGggaWRzIHRoYXQgb2NjdXIgdHdpY2Ugb3IgbW9yZVxubW9yZS50aGFuLnR3by5ncmFkZXMgPC0gYygpXG5cbmZvcihpIGluIDE6bGVuZ3RoKHNwbGl0LmJ5LmlkKSkge1xuICBpZihucm93KHNwbGl0LmJ5LmlkW1tpXV0pID49IDIpIHtcbiAgICBtb3JlLnRoYW4udHdvLmdyYWRlcyA8LSBjKG1vcmUudGhhbi50d28uZ3JhZGVzLCBzcGxpdC5ieS5pZFtpXSlcbiAgfVxufVxuYGBgIn0= -->
+<pre class="r"><code># Initializing a dataframe to be populated with ids that occur twice or more
 more.than.two.grades &lt;- c()
 
 for(i in 1:length(split.by.id)) {
   if(nrow(split.by.id[[i]]) &gt;= 2) {
     more.than.two.grades &lt;- c(more.than.two.grades, split.by.id[i])
+  }
+}</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBJbml0aWFsaXppbmcgYSBkYXRhZnJhbWUgdG8gYmUgcG9wdWxhdGVkIHdpdGggaWRzIHRoYXQgb2NjdXIgb25seSB0d2ljZVxub25seS50d28uZ3JhZGVzIDwtIGMoKVxuXG5mb3IoaSBpbiAxOmxlbmd0aChzcGxpdC5ieS5pZCkpIHtcbiAgaWYobnJvdyhzcGxpdC5ieS5pZFtbaV1dKSA9PSAyKSB7XG4gICBvbmx5LnR3by5ncmFkZXMgPC0gYyhvbmx5LnR3by5ncmFkZXMsIHNwbGl0LmJ5LmlkW2ldKVxuICB9XG59XG5gYGAifQ== -->
+<pre class="r"><code># Initializing a dataframe to be populated with ids that occur only twice
+only.two.grades &lt;- c()
+
+for(i in 1:length(split.by.id)) {
+  if(nrow(split.by.id[[i]]) == 2) {
+   only.two.grades &lt;- c(only.two.grades, split.by.id[i])
   }
 }</code></pre>
 <!-- rnb-source-end -->
@@ -334,9 +378,55 @@ for(i in 1:length(covid.terms$`20/FA`)) {
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBkYXRhIGZyYW1lIHdpdGggZ3JhZGVzXG5kZiA9IHJlc2hhcGUyOjpkY2FzdChtYXRoLnN0dWRlbnRzLCBpZCArIGFjdHVhbC5tYWpvciArIGFjdGl2ZS5wcm9ncmFtcyB+IHJvd2lkKGlkKSwgdmFsdWUudmFyID0gXCJmaW5hbC5ncmFkZVwiKVxuY29sbmFtZXMoZGYpID0gYyhcIklEXCIsIFwiQUNUX01BSlwiLCBcIkFjdGl2ZV9Qcm9ncmFtc1wiLCBcIkdyYWRlMVwiLCBcIkdyYWRlMlwiLCBcIkdyYWRlM1wiLCBcIkdyYWRlNFwiLCBcIkdyYWRlNVwiLCBcIkdyYWRlNlwiKVxuXG4jIGRhdGEgZnJhbWUgd2l0aCB0ZXJtc1xudGVybSA9IHJlc2hhcGUyOjpkY2FzdChtYXRoLnN0dWRlbnRzLCBpZCB+IHJvd2lkKGlkKSwgdmFsdWUudmFyID0gXCJ0ZXJtXCIpXG50ZXJtID0gc3Vic2V0KHRlcm0sIHNlbGVjdCA9IC1jKGlkKSlcbmNvbG5hbWVzKHRlcm0pID0gYyhcIlRlcm0xXCIsIFwiVGVybTJcIiwgXCJUZXJtM1wiLCBcIlRlcm00XCIsIFwiVGVybTVcIiwgXCJUZXJtNlwiKVxuXG4jIGRhdGEgZnJhbWUgd2l0aCBjb3Vyc2UgY29kZXNcbm5hbWUgPSByZXNoYXBlMjo6ZGNhc3QobWF0aC5zdHVkZW50cywgaWQgfiByb3dpZChpZCksIHZhbHVlLnZhciA9IFwiY291cnNlLm5hbWVcIilcbm5hbWUgPSBzdWJzZXQobmFtZSwgc2VsZWN0ID0gLWMoaWQpKVxuY29sbmFtZXMobmFtZSkgPSBjKFwiQ291cnNlMVwiLCBcIkNvdXJzZTJcIiwgXCJDb3Vyc2UzXCIsIFwiQ291cnNlNFwiLCBcIkNvdXJzZTVcIiwgXCJDb3Vyc2U2XCIpXG5cbiMgZGF0YSBmcmFtZSB3aXRoIHByb2ZzXG5wcm9mID0gcmVzaGFwZTI6OmRjYXN0KG1hdGguc3R1ZGVudHMsIGlkIH4gcm93aWQoaWQpLCB2YWx1ZS52YXIgPSBcImZhY3VsdHkubGFzdFwiKVxucHJvZiA9IHN1YnNldChwcm9mLCBzZWxlY3QgPSAtYyhpZCkpXG5jb2xuYW1lcyhwcm9mKSA9IGMoXCJQcm9mMVwiLCBcIlByb2YyXCIsIFwiUHJvZjNcIiwgXCJQcm9mNFwiLCBcIlByb2Y1XCIsIFwiUHJvZjZcIilcblxuIyBtZXJnZSBhbGwgZGF0YSBmcmFtZXMgYWJvdmUgdG8gb25lIGRhdGEgZnJhbWVcbmFsbC5kYXRhLmZyYW1lcyA9IGNiaW5kKGRmLCB0ZXJtLCBuYW1lLCBwcm9mKVxuXG4jIHJlb3JkZXIgdGhlIGNvbHVtbnMgaW4gdGhlIG1lcmdlZCBkYXRhIGZyYW1lXG5vcmRlcmVkLmRhdGEuZnJhbWUgPC0gc3Vic2V0KGFsbC5kYXRhLmZyYW1lcywgc2VsZWN0ID0gYyhcIklEXCIsIFwiQUNUX01BSlwiLCBcIkFjdGl2ZV9Qcm9ncmFtc1wiLCBcIlByb2YxXCIsIFwiVGVybTFcIiwgXCJDb3Vyc2UxXCIsIFwiR3JhZGUxXCIsIFwiUHJvZjJcIiwgXCJUZXJtMlwiLCBcIkNvdXJzZTJcIiwgXCJHcmFkZTJcIiwgXCJQcm9mM1wiLCBcIlRlcm0zXCIsIFwiQ291cnNlM1wiLCBcIkdyYWRlM1wiLCBcIlByb2Y0XCIsIFwiVGVybTRcIiwgXCJDb3Vyc2U0XCIsIFwiR3JhZGU0XCIsIFwiUHJvZjVcIiwgXCJUZXJtNVwiLCBcIkNvdXJzZTVcIiwgXCJHcmFkZTVcIiwgXCJQcm9mNlwiLCBcIlRlcm02XCIsIFwiQ291cnNlNlwiLCBcIkdyYWRlNlwiKSlcblxuYGBgIn0= -->
+<pre class="r"><code># data frame with grades
+df = reshape2::dcast(math.students, id + actual.major + active.programs ~ rowid(id), value.var = &quot;final.grade&quot;)
+colnames(df) = c(&quot;ID&quot;, &quot;ACT_MAJ&quot;, &quot;Active_Programs&quot;, &quot;Grade1&quot;, &quot;Grade2&quot;, &quot;Grade3&quot;, &quot;Grade4&quot;, &quot;Grade5&quot;, &quot;Grade6&quot;)
+
+# data frame with terms
+term = reshape2::dcast(math.students, id ~ rowid(id), value.var = &quot;term&quot;)
+term = subset(term, select = -c(id))
+colnames(term) = c(&quot;Term1&quot;, &quot;Term2&quot;, &quot;Term3&quot;, &quot;Term4&quot;, &quot;Term5&quot;, &quot;Term6&quot;)
+
+# data frame with course codes
+name = reshape2::dcast(math.students, id ~ rowid(id), value.var = &quot;course.name&quot;)
+name = subset(name, select = -c(id))
+colnames(name) = c(&quot;Course1&quot;, &quot;Course2&quot;, &quot;Course3&quot;, &quot;Course4&quot;, &quot;Course5&quot;, &quot;Course6&quot;)
+
+# data frame with profs
+prof = reshape2::dcast(math.students, id ~ rowid(id), value.var = &quot;faculty.last&quot;)
+prof = subset(prof, select = -c(id))
+colnames(prof) = c(&quot;Prof1&quot;, &quot;Prof2&quot;, &quot;Prof3&quot;, &quot;Prof4&quot;, &quot;Prof5&quot;, &quot;Prof6&quot;)
+
+# merge all data frames above to one data frame
+all.data.frames = cbind(df, term, name, prof)
+
+# reorder the columns in the merged data frame
+ordered.data.frame &lt;- subset(all.data.frames, select = c(&quot;ID&quot;, &quot;ACT_MAJ&quot;, &quot;Active_Programs&quot;, &quot;Prof1&quot;, &quot;Term1&quot;, &quot;Course1&quot;, &quot;Grade1&quot;, &quot;Prof2&quot;, &quot;Term2&quot;, &quot;Course2&quot;, &quot;Grade2&quot;, &quot;Prof3&quot;, &quot;Term3&quot;, &quot;Course3&quot;, &quot;Grade3&quot;, &quot;Prof4&quot;, &quot;Term4&quot;, &quot;Course4&quot;, &quot;Grade4&quot;, &quot;Prof5&quot;, &quot;Term5&quot;, &quot;Course5&quot;, &quot;Grade5&quot;, &quot;Prof6&quot;, &quot;Term6&quot;, &quot;Course6&quot;, &quot;Grade6&quot;))
+</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZm9yKGkgaW4gMTpsZW5ndGgob3JkZXJlZC5kYXRhLmZyYW1lJENvdXJzZTEpKSB7XG4gIGlmKG9yZGVyZWQuZGF0YS5mcmFtZSRDb3Vyc2UxID09IFwiTUEtMDUwXCIgJiYgb3JkZXJlZC5kYXRhLmZyYW1lJENvdXJzZTIgPT0gXCJNQS0wNTBcIikge1xuICAgIHJlbW92ZShvcmRlcmVkLmRhdGEuZnJhbWVbaV0pXG4gIH1cbn1cbmBgYCJ9 -->
+<pre class="r"><code>for(i in 1:length(ordered.data.frame$Course1)) {
+  if(ordered.data.frame$Course1 == &quot;MA-050&quot; &amp;&amp; ordered.data.frame$Course2 == &quot;MA-050&quot;) {
+    remove(ordered.data.frame[i])
+  }
+}</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiRXJyb3IgaW4gcmVtb3ZlKG9yZGVyZWQuZGF0YS5mcmFtZVtpXSkgOiBcbiAgLi4uIG11c3QgY29udGFpbiBuYW1lcyBvciBjaGFyYWN0ZXIgc3RyaW5nc1xuIn0= -->
+<pre><code>Error in remove(ordered.data.frame[i]) : 
+  ... must contain names or character strings</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
 </div>
 
-<div id="rmd-source-code">LS0tDQp0aXRsZTogIk1lYXN1cmluZyBTdHVkZW50IFN1Y2Nlc3MgaW4gTUEwNTAgJiBCZXlvbmQiDQphdXRob3JzOiBTaGFubm9uIENveWxlICYgUmFjaGVsIEtlbXB0ZXINCm91dHB1dDogaHRtbF9ub3RlYm9vaw0KLS0tDQoNCmBgYHtyfQ0KbGlicmFyeShtb3NhaWMpDQpgYGANCg0KDQpgYGB7cn0NCiMgSW5pdGlhbGl6aW5nIHRoZSBkYXRhc2V0IHRvIGEgdmFyaWFibGUNCm1hdGguc3R1ZGVudHMgPSBDb3lsZVNhbnMyMg0KYGBgDQoNCmBgYHtyfQ0KIyBNYW5pcHVsYXRpbmcgdGhlIG5hbWVzIG9mIHRoZSBjb2x1bW5zIHNvIHRoZXkgYXJlIGVhc2llciB0byBjYWxsIGluIHRoZSBmdXR1cmUNCm1hdGguc3R1ZGVudHMgPSBtYXRoLnN0dWRlbnRzICU+JSANCiAgcmVuYW1lKA0KICAgIGlkID0gJ0lEJywgDQogICAgdGVybSA9ICdUZXJtJywNCiAgICBjb3Vyc2UubmFtZSA9ICdDb3Vyc2UgTmFtZScsDQogICAgc2VjdGlvbi5uYW1lID0gJ1NlY3Rpb24gTmFtZScsDQogICAgY3VycmVudC5zdGF0dXMgPSAnQ3VycmVudCBTdGF0dXMnLA0KICAgIHZlcmlmLmdyYWRlID0gJ1ZlcmlmIEdyYWRlJywNCiAgICBhY3R1YWwuZ3JhZGUgPSAnQWN0dWFsIEdyYWRlJw0KICAgIA0KICApDQpgYGANCg0KIyMgU3BsaXR0aW5nIHRoZSBkYXRhIGJhc2VkIG9uIGNvbHVtbiBuYW1lcyB0byBzZWUgZnJlcXVlbmN5IG9mIGVhY2gNCmBgYHtyfQ0KIyBDcmVhdGluZyBhIHNwbGl0IGxpc3Qgb2YgbWF0aCBzdHVkZW50cyBiYXNlZCBvbiB0aGVpciBpZHMgYW5kIGdyb3VwaW5nIHRoZW0gdG9nZXRoZXINCnNwbGl0LmJ5LmlkIDwtIHNwbGl0KG1hdGguc3R1ZGVudHMsIGYgPSBtYXRoLnN0dWRlbnRzJGlkKQ0KYGBgDQoNCmBgYHtyfQ0KIyBDcmVhdGluZyBhIHNwbGl0IGxpc3Qgb2YgY291cnNlcw0Kc3BsaXQuYnkubWEwNTAgPC0gc3BsaXQobWF0aC5zdHVkZW50cywgZiA9IG1hdGguc3R1ZGVudHMkY291cnNlLm5hbWUpDQpgYGANCg0KYGBge3J9DQojIENyZWF0aW5nIGEgc3BsaXQgbGlzdCBiYXNlZCBvbiB0ZXJtIHRha2VuDQpzcGxpdC5ieS50ZXJtIDwtIHNwbGl0KG1hdGguc3R1ZGVudHMsIGYgPSBtYXRoLnN0dWRlbnRzJHRlcm0pDQpgYGANCg0KYGBge3J9DQojIENyZWF0aW5nIGEgc3BsaXQgbGlzdCBiYXNlZCBvbiBzdHVkZW50IGN1cnJlbnQgc3RhdHVzDQpzcGxpdC5ieS5jdXJyZW50LnN0YXR1cyA8LSBzcGxpdChtYXRoLnN0dWRlbnRzLCBmID0gbWF0aC5zdHVkZW50cyRjdXJyZW50LnN0YXR1cykNCmBgYA0KDQpgYGB7cn0NCiMgQ3JlYXRpbmcgYSBzcGxpdCBsaXN0IGJhc2VkIG9uIGdyYWRlIHJlY2VpdmVkIGluIGNvdXJzZQ0Kc3BsaXQuYnkudmVyaWYuZ3JhZGUgPC0gc3BsaXQobWF0aC5zdHVkZW50cywgZiA9IG1hdGguc3R1ZGVudHMkdmVyaWYuZ3JhZGUpDQpgYGANCg0KIyMgRnVydGhlciBjb25kZW5zaW5nIGVhY2ggb2YgdGhlIGRhdGFmcmFtZXMNCmBgYHtyfQ0KIyBJbml0aWFsaXppbmcgYSBkYXRhZnJhbWUgdG8gYmUgcG9wdWxhdGVkIHdpdGggaWRzIHRoYXQgb2NjdXIgdHdpY2Ugb3IgbW9yZQ0KbW9yZS50aGFuLnR3by5ncmFkZXMgPC0gYygpDQoNCmZvcihpIGluIDE6bGVuZ3RoKHNwbGl0LmJ5LmlkKSkgew0KICBpZihucm93KHNwbGl0LmJ5LmlkW1tpXV0pID49IDIpIHsNCiAgICBtb3JlLnRoYW4udHdvLmdyYWRlcyA8LSBjKG1vcmUudGhhbi50d28uZ3JhZGVzLCBzcGxpdC5ieS5pZFtpXSkNCiAgfQ0KfQ0KYGBgDQoNCmBgYHtyfQ0KIyBBZGRpbmcgQ09WSUQgc2VtZXN0ZXJzIGludG8gaXRzIG93biBkYXRhZnJhbWUgdG8gc2VlIGlmIHRoZXJlIGlzIGEgZGlmZmVyZW5jZSBpbiBncmFkZXMNCmNvdmlkLnRlcm1zIDwtIGMoKQ0KDQpmb3IoaSBpbiAxOmxlbmd0aChzcGxpdC5ieS50ZXJtKSkgew0KICBpZihzcGxpdC5ieS50ZXJtW1tpXV0kdGVybSA9PSAiMjAvU1AiIHx8IHNwbGl0LmJ5LnRlcm1bW2ldXSR0ZXJtID09ICIyMC9TQSIgfHwgc3BsaXQuYnkudGVybVtbaV1dJHRlcm0gPT0gIjIwL1NCIiB8fCAgc3BsaXQuYnkudGVybVtbaV1dJHRlcm0gPT0gIjIwL1NDIiB8fCBzcGxpdC5ieS50ZXJtW1tpXV0kdGVybSA9PSAiMjAvU0QiIHx8IHNwbGl0LmJ5LnRlcm1bW2ldXSR0ZXJtID09ICIyMC9TRSIgfHwgc3BsaXQuYnkudGVybVtbaV1dJHRlcm0gPT0gIjIwL0ZBIiB8fCBzcGxpdC5ieS50ZXJtW1tpXV0kdGVybSA9PSAiMjEvU1AiIHx8IHNwbGl0LmJ5LnRlcm1bW2ldXSR0ZXJtID09ICIyMS9TQSIgfHwgc3BsaXQuYnkudGVybVtbaV1dJHRlcm0gPT0gIjIxL1NCIiB8fCAgc3BsaXQuYnkudGVybVtbaV1dJHRlcm0gPT0gIjIxL1NDIiB8fCBzcGxpdC5ieS50ZXJtW1tpXV0kdGVybSA9PSAiMjEvU0QiIHx8IHNwbGl0LmJ5LnRlcm1bW2ldXSR0ZXJtID09ICIyMS9TRSIpIHsNCiAgICBjb3ZpZC50ZXJtcyA8LSBjKGNvdmlkLnRlcm1zLCBzcGxpdC5ieS50ZXJtW2ldKQ0KICB9DQp9DQpgYGANCg0KYGBge3J9DQpmYS4yMC5tYTA1MCA8LSBjKCkNCg0KZm9yKGkgaW4gMTpsZW5ndGgoY292aWQudGVybXMkYDIwL0ZBYCkpIHsNCiAgaWYoY292aWQudGVybXMkYDIwL0ZBYFtpLCAzXSA9PSAiTUEtMDUwIikgew0KICAgIGZhLjIwLm1hMDUwIDwtIGMoZmEuMjAubWEwNTAsIGNvdmlkLnRlcm1zJGAyMC9GQWBbaSwgM10pDQogIH0NCn0NCg0KYGBgDQoNCg==</div>
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIk1lYXN1cmluZyBTdHVkZW50IFN1Y2Nlc3MgaW4gTUEwNTAgJiBCZXlvbmQiDQphdXRob3JzOiBTaGFubm9uIENveWxlICYgUmFjaGVsIEtlbXB0ZXINCm91dHB1dDogaHRtbF9ub3RlYm9vaw0KLS0tDQoNCmBgYHtyfQ0KbGlicmFyeShtb3NhaWMpDQpsaWJyYXJ5KGRwbHlyKQ0KYGBgDQoNCmBgYHtyfQ0KIyBJbml0aWFsaXppbmcgdGhlIGRhdGFzZXQgdG8gYSB2YXJpYWJsZSAtIGRhdGFzZXQgd2l0aG91dCBzcHJpbmcvMjIgYW5kIHdpdGhvdXQgbWFqb3JzLCBwcm9mZXNzb3IsIGV0Yw0KbWF0aC5zdHVkZW50cy53aXRob3V0LlNQMjIgPSBDb3lsZVNhbnMyMg0KYGBgDQoNCmBgYHtyfQ0KIyBJbml0aWFsaXppbmcgdGhlIGRhdGFzZXQgdG8gYSB2YXJpYWJsZSAtIGRhdGFzZXQgaXMgdXBkYXRlZCBidXQgaGFzIHNwcmluZy8yMiBpbiBpdA0KbWF0aC5zdHVkZW50cyA9IE1hdGhfRGF0YTINCm1hdGguc3R1ZGVudHMgPC0gYXMuZGF0YS5mcmFtZShtYXRoLnN0dWRlbnRzKQ0KYGBgDQoNCmBgYHtyfQ0KIyBNYW5pcHVsYXRpbmcgdGhlIG5hbWVzIG9mIHRoZSBjb2x1bW5zIHNvIHRoZXkgYXJlIGVhc2llciB0byBjYWxsIGluIHRoZSBmdXR1cmUNCm1hdGguc3R1ZGVudHMgPSBtYXRoLnN0dWRlbnRzICU+JSANCiAgcmVuYW1lKA0KICAgIGlkID0gJ0lEJywgDQogICAgdGVybSA9ICdUZXJtJywNCiAgICBhY3R1YWwubWFqb3IgPSAnQUNUIE1BSicsDQogICAgYWN0aXZlLnByb2dyYW1zID0gJ0FjdGl2ZSBQcm9ncmFtcycsDQogICAgY291cnNlLm5hbWUgPSAnQ291cnNlIE5hbWUnLA0KICAgIHNlY3Rpb24ubmFtZSA9ICdTZWN0aW9uIE5hbWUnLA0KICAgIGN1cnJlbnQuc3RhdHVzID0gJ0N1cnJlbnQgU3RhdHVzJywNCiAgICBtaWR0ZXJtLmdyYWRlID0gJ01JRFRFUk0gR1JBREUnLA0KICAgIHZlcmlmLmdyYWRlID0gJ1ZlcmlmIEdyYWRlJywNCiAgICBmaW5hbC5ncmFkZSA9ICdGaW5hbCBHcmFkZScsDQogICAgY29tcGxldGVkLmNyZWRpdHMgPSAnQ21wbCBDcmVkJywNCiAgICBmYWN1bHR5Lmxhc3QgPSAnRmFjdWx0eSBMYXN0IE5hbWUnDQogICkNCmBgYA0KDQojIyBTcGxpdHRpbmcgdGhlIGRhdGEgYmFzZWQgb24gY29sdW1uIG5hbWVzIHRvIHNlZSBmcmVxdWVuY3kgb2YgZWFjaA0KYGBge3J9DQojIENyZWF0aW5nIGEgc3BsaXQgbGlzdCBvZiBtYXRoIHN0dWRlbnRzIGJhc2VkIG9uIHRoZWlyIGlkcyBhbmQgZ3JvdXBpbmcgdGhlbSB0b2dldGhlcg0Kc3BsaXQuYnkuaWQgPC0gc3BsaXQobWF0aC5zdHVkZW50cywgZiA9IG1hdGguc3R1ZGVudHMkaWQpDQpgYGANCg0KYGBge3J9DQojIENyZWF0aW5nIGEgc3BsaXQgbGlzdCBvZiBjb3Vyc2VzDQpzcGxpdC5ieS5tYTA1MCA8LSBzcGxpdChtYXRoLnN0dWRlbnRzLCBmID0gbWF0aC5zdHVkZW50cyRjb3Vyc2UubmFtZSkNCmBgYA0KDQpgYGB7cn0NCiMgQ3JlYXRpbmcgYSBzcGxpdCBsaXN0IGJhc2VkIG9uIHRlcm0gdGFrZW4NCnNwbGl0LmJ5LnRlcm0gPC0gc3BsaXQobWF0aC5zdHVkZW50cywgZiA9IG1hdGguc3R1ZGVudHMkdGVybSkNCmBgYA0KDQpgYGB7cn0NCiMgQ3JlYXRpbmcgYSBzcGxpdCBsaXN0IGJhc2VkIG9uIHN0dWRlbnQgY3VycmVudCBzdGF0dXMNCnNwbGl0LmJ5LmN1cnJlbnQuc3RhdHVzIDwtIHNwbGl0KG1hdGguc3R1ZGVudHMsIGYgPSBtYXRoLnN0dWRlbnRzJGN1cnJlbnQuc3RhdHVzKQ0KYGBgDQoNCmBgYHtyfQ0KIyBDcmVhdGluZyBhIHNwbGl0IGxpc3QgYmFzZWQgb24gZ3JhZGUgcmVjZWl2ZWQgaW4gY291cnNlDQpzcGxpdC5ieS52ZXJpZi5ncmFkZSA8LSBzcGxpdChtYXRoLnN0dWRlbnRzLCBmID0gbWF0aC5zdHVkZW50cyR2ZXJpZi5ncmFkZSkNCmBgYA0KDQoNCiMjIEZ1cnRoZXIgY29uZGVuc2luZyBlYWNoIG9mIHRoZSBkYXRhZnJhbWVzDQpgYGB7cn0NCiMgT21pdHRpbmcgdGhlIFNwcmluZyAyMiBzdHVkZW50cw0KdGVybXMgPC0gYygpDQoNCmZvcihpIGluIDE6bGVuZ3RoKHNwbGl0LmJ5LnRlcm0pKSB7DQogIGlmKHNwbGl0LmJ5LnRlcm1bW2ldXSR0ZXJtICE9ICIyMi9TUCIgJiYgc3BsaXQuYnkudGVybSAhPSAiIikgew0KICAgIHRlcm1zIDwtIGModGVybXMsIHNwbGl0LmJ5LnRlcm1baV0pDQogIH0NCn0NCmBgYA0KDQpgYGB7cn0NCiMgSW5pdGlhbGl6aW5nIGEgZGF0YWZyYW1lIHRvIGJlIHBvcHVsYXRlZCB3aXRoIGlkcyB0aGF0IG9jY3VyIHR3aWNlIG9yIG1vcmUNCm1vcmUudGhhbi50d28uZ3JhZGVzIDwtIGMoKQ0KDQpmb3IoaSBpbiAxOmxlbmd0aChzcGxpdC5ieS5pZCkpIHsNCiAgaWYobnJvdyhzcGxpdC5ieS5pZFtbaV1dKSA+PSAyKSB7DQogICAgbW9yZS50aGFuLnR3by5ncmFkZXMgPC0gYyhtb3JlLnRoYW4udHdvLmdyYWRlcywgc3BsaXQuYnkuaWRbaV0pDQogIH0NCn0NCmBgYA0KDQpgYGB7cn0NCiMgSW5pdGlhbGl6aW5nIGEgZGF0YWZyYW1lIHRvIGJlIHBvcHVsYXRlZCB3aXRoIGlkcyB0aGF0IG9jY3VyIG9ubHkgdHdpY2UNCm9ubHkudHdvLmdyYWRlcyA8LSBjKCkNCg0KZm9yKGkgaW4gMTpsZW5ndGgoc3BsaXQuYnkuaWQpKSB7DQogIGlmKG5yb3coc3BsaXQuYnkuaWRbW2ldXSkgPT0gMikgew0KICAgb25seS50d28uZ3JhZGVzIDwtIGMob25seS50d28uZ3JhZGVzLCBzcGxpdC5ieS5pZFtpXSkNCiAgfQ0KfQ0KYGBgDQoNCmBgYHtyfQ0KIyBBZGRpbmcgQ09WSUQgc2VtZXN0ZXJzIGludG8gaXRzIG93biBkYXRhZnJhbWUgdG8gc2VlIGlmIHRoZXJlIGlzIGEgZGlmZmVyZW5jZSBpbiBncmFkZXMNCmNvdmlkLnRlcm1zIDwtIGMoKQ0KDQpmb3IoaSBpbiAxOmxlbmd0aChzcGxpdC5ieS50ZXJtKSkgew0KICBpZihzcGxpdC5ieS50ZXJtW1tpXV0kdGVybSA9PSAiMjAvU1AiIHx8IHNwbGl0LmJ5LnRlcm1bW2ldXSR0ZXJtID09ICIyMC9TQSIgfHwgc3BsaXQuYnkudGVybVtbaV1dJHRlcm0gPT0gIjIwL1NCIiB8fCAgc3BsaXQuYnkudGVybVtbaV1dJHRlcm0gPT0gIjIwL1NDIiB8fCBzcGxpdC5ieS50ZXJtW1tpXV0kdGVybSA9PSAiMjAvU0QiIHx8IHNwbGl0LmJ5LnRlcm1bW2ldXSR0ZXJtID09ICIyMC9TRSIgfHwgc3BsaXQuYnkudGVybVtbaV1dJHRlcm0gPT0gIjIwL0ZBIiB8fCBzcGxpdC5ieS50ZXJtW1tpXV0kdGVybSA9PSAiMjEvU1AiIHx8IHNwbGl0LmJ5LnRlcm1bW2ldXSR0ZXJtID09ICIyMS9TQSIgfHwgc3BsaXQuYnkudGVybVtbaV1dJHRlcm0gPT0gIjIxL1NCIiB8fCAgc3BsaXQuYnkudGVybVtbaV1dJHRlcm0gPT0gIjIxL1NDIiB8fCBzcGxpdC5ieS50ZXJtW1tpXV0kdGVybSA9PSAiMjEvU0QiIHx8IHNwbGl0LmJ5LnRlcm1bW2ldXSR0ZXJtID09ICIyMS9TRSIpIHsNCiAgICBjb3ZpZC50ZXJtcyA8LSBjKGNvdmlkLnRlcm1zLCBzcGxpdC5ieS50ZXJtW2ldKQ0KICB9DQp9DQpgYGANCg0KYGBge3J9DQpmYS4yMC5tYTA1MCA8LSBjKCkNCg0KZm9yKGkgaW4gMTpsZW5ndGgoY292aWQudGVybXMkYDIwL0ZBYCkpIHsNCiAgaWYoY292aWQudGVybXMkYDIwL0ZBYFtpLCAzXSA9PSAiTUEtMDUwIikgew0KICAgIGZhLjIwLm1hMDUwIDwtIGMoZmEuMjAubWEwNTAsIGNvdmlkLnRlcm1zJGAyMC9GQWBbaSwgM10pDQogIH0NCn0NCg0KYGBgDQoNCmBgYHtyfQ0KIyBkYXRhIGZyYW1lIHdpdGggZ3JhZGVzDQpkZiA9IHJlc2hhcGUyOjpkY2FzdChtYXRoLnN0dWRlbnRzLCBpZCArIGFjdHVhbC5tYWpvciArIGFjdGl2ZS5wcm9ncmFtcyB+IHJvd2lkKGlkKSwgdmFsdWUudmFyID0gImZpbmFsLmdyYWRlIikNCmNvbG5hbWVzKGRmKSA9IGMoIklEIiwgIkFDVF9NQUoiLCAiQWN0aXZlX1Byb2dyYW1zIiwgIkdyYWRlMSIsICJHcmFkZTIiLCAiR3JhZGUzIiwgIkdyYWRlNCIsICJHcmFkZTUiLCAiR3JhZGU2IikNCg0KIyBkYXRhIGZyYW1lIHdpdGggdGVybXMNCnRlcm0gPSByZXNoYXBlMjo6ZGNhc3QobWF0aC5zdHVkZW50cywgaWQgfiByb3dpZChpZCksIHZhbHVlLnZhciA9ICJ0ZXJtIikNCnRlcm0gPSBzdWJzZXQodGVybSwgc2VsZWN0ID0gLWMoaWQpKQ0KY29sbmFtZXModGVybSkgPSBjKCJUZXJtMSIsICJUZXJtMiIsICJUZXJtMyIsICJUZXJtNCIsICJUZXJtNSIsICJUZXJtNiIpDQoNCiMgZGF0YSBmcmFtZSB3aXRoIGNvdXJzZSBjb2Rlcw0KbmFtZSA9IHJlc2hhcGUyOjpkY2FzdChtYXRoLnN0dWRlbnRzLCBpZCB+IHJvd2lkKGlkKSwgdmFsdWUudmFyID0gImNvdXJzZS5uYW1lIikNCm5hbWUgPSBzdWJzZXQobmFtZSwgc2VsZWN0ID0gLWMoaWQpKQ0KY29sbmFtZXMobmFtZSkgPSBjKCJDb3Vyc2UxIiwgIkNvdXJzZTIiLCAiQ291cnNlMyIsICJDb3Vyc2U0IiwgIkNvdXJzZTUiLCAiQ291cnNlNiIpDQoNCiMgZGF0YSBmcmFtZSB3aXRoIHByb2ZzDQpwcm9mID0gcmVzaGFwZTI6OmRjYXN0KG1hdGguc3R1ZGVudHMsIGlkIH4gcm93aWQoaWQpLCB2YWx1ZS52YXIgPSAiZmFjdWx0eS5sYXN0IikNCnByb2YgPSBzdWJzZXQocHJvZiwgc2VsZWN0ID0gLWMoaWQpKQ0KY29sbmFtZXMocHJvZikgPSBjKCJQcm9mMSIsICJQcm9mMiIsICJQcm9mMyIsICJQcm9mNCIsICJQcm9mNSIsICJQcm9mNiIpDQoNCiMgbWVyZ2UgYWxsIGRhdGEgZnJhbWVzIGFib3ZlIHRvIG9uZSBkYXRhIGZyYW1lDQphbGwuZGF0YS5mcmFtZXMgPSBjYmluZChkZiwgdGVybSwgbmFtZSwgcHJvZikNCg0KIyByZW9yZGVyIHRoZSBjb2x1bW5zIGluIHRoZSBtZXJnZWQgZGF0YSBmcmFtZQ0Kb3JkZXJlZC5kYXRhLmZyYW1lIDwtIHN1YnNldChhbGwuZGF0YS5mcmFtZXMsIHNlbGVjdCA9IGMoIklEIiwgIkFDVF9NQUoiLCAiQWN0aXZlX1Byb2dyYW1zIiwgIlByb2YxIiwgIlRlcm0xIiwgIkNvdXJzZTEiLCAiR3JhZGUxIiwgIlByb2YyIiwgIlRlcm0yIiwgIkNvdXJzZTIiLCAiR3JhZGUyIiwgIlByb2YzIiwgIlRlcm0zIiwgIkNvdXJzZTMiLCAiR3JhZGUzIiwgIlByb2Y0IiwgIlRlcm00IiwgIkNvdXJzZTQiLCAiR3JhZGU0IiwgIlByb2Y1IiwgIlRlcm01IiwgIkNvdXJzZTUiLCAiR3JhZGU1IiwgIlByb2Y2IiwgIlRlcm02IiwgIkNvdXJzZTYiLCAiR3JhZGU2IikpDQoNCmBgYA0KDQpgYGB7cn0NCiMjIEdldHRpbmcgcmlkIG9mIHBlb3BsZSB3aG8gaGF2ZSB0YWtlbiAwNTAgdHdpY2UNCmZvcihpIGluIDE6bGVuZ3RoKG9yZGVyZWQuZGF0YS5mcmFtZSRDb3Vyc2UxKSkgew0KICBpZihvcmRlcmVkLmRhdGEuZnJhbWUkQ291cnNlMSA9PSAiTUEtMDUwIiAmJiBvcmRlcmVkLmRhdGEuZnJhbWUkQ291cnNlMiA9PSAiTUEtMDUwIikgew0KICAgIHJlbW92ZShvcmRlcmVkLmRhdGEuZnJhbWVbaV0pDQogIH0NCn0NCmBgYA0KDQo=</div>
 
 
 
