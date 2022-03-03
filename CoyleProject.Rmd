@@ -7,26 +7,30 @@ output: html_notebook
 ```{r}
 library(mosaic)
 library(dplyr)
-```
-
-```{r}
-# Initializing the dataset to a variable - dataset without spring/22 and without majors, professor, etc
-math.students.without.SP22 = CoyleSans22
+library(reshape2) # dcast
+library(data.table) # rowid
 ```
 
 ```{r}
 # Initializing the dataset to a variable - dataset is updated but has spring/22 in it
-math.students = Math_Data2
+# math.students = MathData2Cleaner3
+# math.students <- as.data.frame(math.students)
+```
+
+```{r}
+# Initializing dataset to a variable - has all data from 99
+math.students <- Finalized_Coyle_Data
 math.students <- as.data.frame(math.students)
 ```
+
 
 ```{r}
 # Manipulating the names of the columns so they are easier to call in the future
 math.students = math.students %>% 
   rename(
-    id = 'ID', 
+    id = 'Student ID', 
     term = 'Term',
-    actual.major = 'ACT MAJ',
+    active.major = 'ACT MAJ',
     active.programs = 'Active Programs',
     course.name = 'Course Name',
     section.name = 'Section Name',
@@ -35,8 +39,21 @@ math.students = math.students %>%
     verif.grade = 'Verif Grade',
     final.grade = 'Final Grade',
     completed.credits = 'Cmpl Cred',
-    faculty.last = 'Faculty Last Name'
+    faculty.last = 'Faculty Last Name', 
+    math.placement.score = 'M89 Stu Recent Math Placement',
+    ug.completed.credits = 'CMPL CREDS UG',
+    degree = 'Degree',
+    degree.description = 'Degree Desc',
+    majors = 'Majors',
+    major.description = 'Major', 
+    date = 'Date**'
+    
   )
+```
+
+```{r}
+# Removing all empty IDs
+math.students <- subset(math.students, !(is.na(math.students$id)))
 ```
 
 ## Splitting the data based on column names to see frequency of each
@@ -64,7 +81,6 @@ split.by.current.status <- split(math.students, f = math.students$current.status
 # Creating a split list based on grade received in course
 split.by.verif.grade <- split(math.students, f = math.students$verif.grade)
 ```
-
 
 ## Further condensing each of the dataframes
 ```{r}
@@ -111,20 +127,10 @@ for(i in 1:length(split.by.term)) {
 }
 ```
 
-```{r}
-fa.20.ma050 <- c()
-
-for(i in 1:length(covid.terms$`20/FA`)) {
-  if(covid.terms$`20/FA`[i, 3] == "MA-050") {
-    fa.20.ma050 <- c(fa.20.ma050, covid.terms$`20/FA`[i, 3])
-  }
-}
-
-```
-
+## Building a data frame with all data from the dataset
 ```{r}
 # data frame with grades
-df = reshape2::dcast(math.students, id + actual.major + active.programs ~ rowid(id), value.var = "final.grade")
+df = reshape2::dcast(math.students, id + active.major + active.programs ~ rowid(id), value.var = "final.grade")
 colnames(df) = c("ID", "ACT_MAJ", "Active_Programs", "Grade1", "Grade2", "Grade3", "Grade4", "Grade5", "Grade6")
 
 # data frame with terms
@@ -151,11 +157,55 @@ ordered.data.frame <- subset(all.data.frames, select = c("ID", "ACT_MAJ", "Activ
 ```
 
 ```{r}
-## Getting rid of people who have taken 050 twice
-for(i in 1:length(ordered.data.frame$Course1)) {
-  if(ordered.data.frame$Course1 == "MA-050" && ordered.data.frame$Course2 == "MA-050") {
-    remove(ordered.data.frame[i])
+# Removing anyone who has 050 as a second course since that means they failed the first time they took it
+ordered.data.frame <- subset(ordered.data.frame, ordered.data.frame$Course2 != "MA-050")
+
+# Removing any instances of NA within the second grade
+ordered.data.frame <- subset(ordered.data.frame, !(is.na(ordered.data.frame$Grade2)))
+
+ordered.data.frame <- subset(ordered.data.frame, ordered.data.frame$Grade2 != "T")
+```
+
+```{r}
+# Removing anyone who does not have 050 as a first course
+ordered.data.frame <- subset(ordered.data.frame, ordered.data.frame$Course1 == "MA-050")
+```
+
+```{r}
+# Removing anyone who has MA-100 as a second course since it is not a good indication of level 2 skills
+ordered.data.frame <- subset(ordered.data.frame, ordered.data.frame$Course2 != "MA-100")
+```
+
+
+```{r}
+tally( ~ (ordered.data.frame$Course1 == "MA-050") + ordered.data.frame$Course2, margins = TRUE, data = ordered.data.frame, format = 'count')
+```
+
+
+## Identifying Student Success
+### Successful = C- or higher; identified as a 1
+### Not Successful = Below C-; identified as a 0
+```{r}
+# Adding column for success identifier and making all of them initially show as successful
+ordered.data.frame$Success <- 1
+```
+
+```{r}
+# Replacing the success w/ "0" if the student had a second grade below a C-
+for(i in 1:length(ordered.data.frame$Grade2)) {
+  if(ordered.data.frame$Grade2[[i]] == "D+" || ordered.data.frame$Grade2[[i]] == "D" || ordered.data.frame$Grade2[[i]] == "D-" || ordered.data.frame$Grade2[[i]] == "F") {
+    ordered.data.frame$Success[[i]] <- 0
   }
 }
+```
+
+```{r}
+# Grade in 050 vs Grade in level 2 course
+tally(~ ordered.data.frame$Grade1 + ordered.data.frame$Grade2, margins = TRUE)
+```
+
+```{r}
+
+tally(~ ordered.data.frame$Grade1 + ordered.data.frame$Success, margins = TRUE)
 ```
 
